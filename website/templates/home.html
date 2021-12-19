@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block title %}Inicio{% endblock %} {% block content
+%}
+<h1 align="center">Citas</h1>
+<ul class="list-group list-group-flush" id="notes">
+  {% for note in user.notes %}
+  <li class="list-group-item">
+    {{ note.data }}
+    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+<form method="POST">
+  <input type="date" id="datecita" name="datecita" class="form-control"
+       value="2022-01-01"
+       min="2022-01-01" max="2023-12-31">
+  <textarea name="note" id="note" class="form-control"></textarea>
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Agregar cita (Especifique fecha y motivo de consulta)</button>
+  </div>
+</form>
+{% endblock %}
